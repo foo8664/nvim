@@ -25,6 +25,19 @@ vim.opt.wrap = true
 vim.opt.swapfile = false
 vim.opt.colorcolumn = "80"
 
+-- Tree-sitter config
+treesit = require("nvim-treesitter")
+treesit.install({"c", "python", "bash"})
+treesit.setup({
+	install_dir = vim.fn.stdpath("data") .. "/site"
+})
+vim.api.nvim_create_autocmd({"FileType"}, {
+	pattern = {"*"},
+	callback = function()
+		vim.treesitter.start()
+	end,
+})
+
 -- To write README's properly
 vim.api.nvim_create_autocmd({"FileType"}, {
 	pattern = {"*.md"},
@@ -35,5 +48,5 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 })
 
 vim.opt.syntax = "enable"
--- vim.cmd.colorscheme("CC")
-vim.cmd.colorscheme("desert")
+vim.treesitter.language.add("c")
+vim.cmd.colorscheme("CC")
