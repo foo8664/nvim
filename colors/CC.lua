@@ -51,6 +51,14 @@ local groups = {
 	["shSingleQuote"] = { link = "shDoubleQuote", },
 	["shEscape"] = { fg = "DarkGrey", },
 	["shSpecial"] = { fg = "DarkGrey", },
+
+	-- Asm stuff
+	["@function.builtin.asm"] = { fg = "DarkRed", },
+	["@variable.builtin.asm"] = { fg = "LightYellow", },
+	["@label.asm"] = { fg = "DarkGreen", },
+	["@comment.asm"] = { fg = "LightYellow", },
+	["@number.asm"] = { fg = "Grey", },
+	["@string.asm"] = { fg = "Grey", },
 }
 
 function capitalize(str)
