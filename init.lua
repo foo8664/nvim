@@ -10,7 +10,10 @@ vim.keymap.set("i", "<left>", "<nop>")
 
 -- Source and edit config files quickly
 vim.keymap.set("n", "<leader>ev", ":split $MYVIMRC<cr>")
-vim.keymap.set("n", "<leader>sv", ":source $MYVIMRC<cr>")
+vim.keymap.set("n", "<leader>sv", function()
+	vim.cmd(":source $MYVIMRC")
+	vim.cmd("syntax enable") -- For some reason, syntax is being disabled
+end)
 -- Removing whitespace at the end of lines
 -- Using [[]] string because it doesn't escape \s
 vim.keymap.set("n", "<leader>ts", [[:%s/\s\+$/<cr>]], { silent = true })
@@ -49,6 +52,14 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 	callback = function()
 		vim.opt.colorcolumn = "0"
 		vim.opt.wrap = false
+	end,
+})
+
+-- Read .h's as C files
+vim.api.nvim_create_autocmd({"FileType"}, {
+	pattern = {"*.h"},
+	callback = function()
+		vim.bo.ft = "c"
 	end,
 })
 
