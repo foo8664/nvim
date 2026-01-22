@@ -19,7 +19,7 @@ local groups = {
 
 	-- Tree-sitter stuff
 	-- C stuff
-	["@function.c.c"] = { fg = "DarkRed", },
+	["@function.c"] = { fg = "DarkRed", },
 	["@macro.c"] = { fg = "White", bold = true, },
 	["@constant.c"] = { fg = "White", bold = true, },
 	["@constant.builtin.c"] = { fg = "LightGrey", },
