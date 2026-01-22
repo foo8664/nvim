@@ -18,42 +18,48 @@ local groups = {
 
 
 	-- Tree-sitter stuff
-	["@function"] = { fg = "DarkRed", },
+	-- C stuff
+	["@function.c.c"] = { fg = "DarkRed", },
+	["@macro.c"] = { fg = "White", bold = true, },
+	["@constant.c"] = { fg = "White", bold = true, },
+	["@constant.builtin.c"] = { fg = "LightGrey", },
+	["@comment.c"] = { fg = "LightYellow", },
+	["@keyword.import.c"] = { fg = "Red", },
+	["@keyword.conditional.c"] = { fg = "LightGray", },
+	["@keyword.repeat.c"] = { fg = "LightGray", },
+	["@keyword.return.c"] = { fg = "LightGray", },
+	["@keyword.c"] = { fg = "DarkGreen", },
+	["@type.c"] = { fg = "DarkGreen", },
+	["@type.builtin.c"] = { fg = "DarkGreen", },
+	["@character.c"] = { fg = "LightYellow", },
+	["@number.c"] = { fg = "LightYellow", },
+	["@variable.c"] = { fg = "Gray", },
+	["@variable.builtin.c"] = { fg = "Gray", },
+	["@string.escape.c"] = { fg = "DarkGray", underline = true, },
+	["@string.c"] = { fg = "Gray", },
+	["@property.c"] = { fg = "Gray", },
 
-	["@macro"] = { fg = "White", bold = true, },
-	["@constant"] = { fg = "White", bold = true, },
-	["@constant.builtin"] = { fg = "LightGrey", },
-	["@comment"] = { fg = "LightYellow", },
-
-	["@keyword.import"] = { fg = "Red", },
-	["@keyword.conditional"] = { fg = "LightGray", },
-	["@keyword.repeat"] = { fg = "LightGray", },
-	["@keyword.return"] = { fg = "LightGray", },
-	["@keyword"] = { fg = "DarkGreen", },
-
-	["@type"] = { fg = "DarkGreen", },
-	["@type.builtin"] = { fg = "DarkGreen", },
-
-	["@character"] = { fg = "LightYellow", },
-	["@number"] = { fg = "LightYellow", },
-
-	["@variable"] = { fg = "Gray", },
-	["@variable.builtin"] = { fg = "Gray", },
-	
-	["@string"] = { fg = "Gray", },
-	["@string.escape"] = { fg = "DarkGray", underline = true, },
-	["@String"] = { fg = "Gray", },
-	["@String.escape"] = { fg = "DarkGray", underline = true, },
-
-	["@property"] = { fg = "Gray", },
+	-- Sh stuff
+	["shComment"] = { fg = "LightYellow", },
+	["shStatement"] = { fg = "DarkRed", },
+	["bashStatement"] = { link = "shStatement", },
+	["shVariable"] = { fg = "Green", },
+	["shAlias"] = { link = "shVariable", },
+	["shDerefSimple"] = { fg = "Red", },
+	["bashSpecialVariables"] = { link = "shVariable", },
+	["shDoubleQuote"] = { fg = "Grey", },
+	["shSingleQuote"] = { link = "shDoubleQuote", },
+	["shEscape"] = { fg = "DarkGrey", },
+	["shSpecial"] = { fg = "DarkGrey", },
 }
 
--- Linking everything up, linking to unused groups is not a problem
-local langs = {"c", "python", "bash", "lua", "cpp"}
-for group in pairs(groups) do
-	for lang in pairs(langs) do
-		vim.api.nvim_set_hl(0, group .. "." .. lang, { link = group })
-	end
+function capitalize(str)
+    return (str:gsub("^%l", string.upper))
+end
+
+-- Handling capitalization bs
+for group, color in pairs(groups) do
+	groups[capitalize(group)] = color
 end
 
 -- Setting all the highlights
