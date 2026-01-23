@@ -20,6 +20,7 @@ local groups = {
 	-- Tree-sitter stuff
 	-- C stuff
 	["@function.c"] = { fg = "DarkRed", },
+	["@function.call.c"] = { fg = "DarkRed", },
 	["@macro.c"] = { fg = "White", bold = true, },
 	["@constant.c"] = { fg = "White", bold = true, },
 	["@constant.builtin.c"] = { fg = "LightGrey", },
@@ -38,6 +39,13 @@ local groups = {
 	["@string.escape.c"] = { fg = "DarkGray", underline = true, },
 	["@string.c"] = { fg = "Gray", },
 	["@property.c"] = { fg = "Gray", },
+
+	-- C++ stuff
+	-- all @<anything>.c groups get translated to @<same thing>.cpp ones
+	["@keyword.type.cpp"] = { fg = "LightYellow", bold = true, },
+	["@keyword.modifier.cpp"] = { fg = "LightYellow", bold = true, },
+	["@function.method.cpp"] = { link = "@function.cpp", },
+	["@function.method.call.cpp"] = { link = "@function.method.cpp", },
 
 	-- Sh stuff
 	["shComment"] = { fg = "LightYellow", },
@@ -68,6 +76,14 @@ end
 -- Handling capitalization bs
 for group, color in pairs(groups) do
 	groups[capitalize(group)] = color
+end
+
+-- Linking all of @<stuff>.c's to @<stuff>.cpp
+for group, color in pairs(groups) do
+	rep, ma = group.gsub(group, "@(.*).c", "@%1.cpp")
+	if ma == 1 then
+		groups[rep] = { link = group, }
+	end
 end
 
 -- Setting all the highlights
