@@ -22,6 +22,8 @@ vim.g.netrw_bufsettings = "wrap number relativenumber"
 vim.keymap.set("n", "<leader>d", vim.cmd.Ex)
 -- Editing my theme
 vim.keymap.set("n", "<leader>th", ":split ~/.config/nvim/colors/CC.lua<cr>")
+-- Licenses
+vim.keymap.set("n", "<leader>gpl2", ":read /home/diego/downloads/licenses/GPLv2_header.txt<cr>")
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -66,3 +68,5 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 vim.opt.syntax = "enable"
 vim.treesitter.language.add("c")
 vim.cmd.colorscheme("CC")
+
+require("plugins")
