@@ -67,6 +67,15 @@ local groups = {
 	["@comment.asm"] = { fg = "LightYellow", },
 	["@number.asm"] = { fg = "Grey", },
 	["@string.asm"] = { fg = "Grey", },
+
+	-- Make stuff (some isn't, but who cares)
+	["@string.make"] = { fg = "DarkRed", },
+	["@string.special.symbol.make"] = { link = "@string.make", },
+	["@function.make"] = { fg = "DarkGreen", },
+	["@function.call.bash"] = { fg = "LightYellow", },
+	["@function.builtin.bash"] = { link = "@function.call.bash" },
+	["@comment.make"] = { fg = "LightYellow", },
+	["Special"] = { fg = "LightYellow", },
 }
 
 function capitalize(str)
