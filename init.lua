@@ -70,6 +70,10 @@ vim.api.nvim_create_autocmd({"FileType"}, {
 
 vim.opt.syntax = "enable"
 vim.treesitter.language.add("c")
-vim.cmd.colorscheme("CC")
 
 require("plugins")
+
+require("ashen").load()
+vim.cmd.colorscheme("ashen")
+vim.cmd("hi Normal guibg=None")
+vim.cmd("hi LineNr guibg=None guifg=Dark")
