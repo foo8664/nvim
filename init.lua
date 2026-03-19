@@ -1,4 +1,5 @@
 vim.g.mapleader = ","
+vim.g.c_syntax_for_h = true
 
 -- the <nop>'s are for training
 vim.keymap.set("i", "jk", "<esc>")
@@ -31,6 +32,8 @@ vim.opt.wrap = true
 vim.opt.hlsearch = true
 vim.opt.swapfile = false
 vim.opt.colorcolumn = "80"
+
+vim.g.c_recommended_style = 0
 
 -- Tree-sitter config
 local treesit = require("nvim-treesitter")
