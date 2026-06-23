@@ -24,7 +24,7 @@ vim.keymap.set("n", "<leader>d", vim.cmd.Ex)
 -- Editing my theme
 vim.keymap.set("n", "<leader>th", ":split ~/.config/nvim/colors/CC.lua<cr>")
 -- Licenses
-vim.keymap.set("n", "<leader>gpl2", ":read /home/diego/downloads/licenses/GPLv2_header.txt<cr>")
+vim.keymap.set("n", "<leader>gpl2", ":read /home/diego/downloads/documents/licenses/GPLv2_header.txt<cr>")
 
 vim.opt.number = true
 vim.opt.relativenumber = true
