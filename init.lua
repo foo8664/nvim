@@ -37,7 +37,10 @@ vim.g.c_recommended_style = 0
 
 -- Tree-sitter config
 local treesit = require("nvim-treesitter")
-treesit.install("all")
+treesit.install({
+	"c", "cpp", "rust", "asm", "make", "python", "bash", "lua", "nix",
+	"json", "markdown", "yaml", "perl", "html", "css"
+})
 treesit.setup({
 	install_dir = vim.fn.stdpath("data") .. "/site"
 })
